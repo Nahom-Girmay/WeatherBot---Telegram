@@ -21,13 +21,9 @@ async def lifespan(app: FastAPI):
 
     print(f"Webhook set: {webhook_url}")
 
-
     yield
 
-
     # Shutdown
-    await bot.delete_webhook(drop_pending_updates=True)
-
     await bot.session.close()
 
 
@@ -58,6 +54,13 @@ async def home():
     return {
         "status": "Weather Bot is running"
     }
+
+
+
+@app.head("/")
+async def health_check():
+
+    return
 
 
 
